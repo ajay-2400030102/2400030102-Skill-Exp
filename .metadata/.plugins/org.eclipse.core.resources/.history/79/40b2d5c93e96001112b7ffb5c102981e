@@ -1,0 +1,11 @@
+package soa.model;
+
+import jakarta.persistence.Entity;
+
+@Entity
+@Table(name="")
+public class Product {
+	
+	
+
+}

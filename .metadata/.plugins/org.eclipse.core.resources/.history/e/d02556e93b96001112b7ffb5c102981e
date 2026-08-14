@@ -1,0 +1,5 @@
+package soa.model;
+
+public class Cart {
+
+}

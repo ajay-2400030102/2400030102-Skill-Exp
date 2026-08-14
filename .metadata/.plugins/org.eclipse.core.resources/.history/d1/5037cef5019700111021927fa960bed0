@@ -1,0 +1,14 @@
+spring.application.name=CartService
+server.port=8002
+
+
+eureka.client.service-url.defaultZone=https://localhost:9000/eureka/
+
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.datasource.url=jdbc:postgresql://localhost:5432/fds
+spring.datasource.username=postgres
+spring.datasource.password=Juber@9949
+
+# JPA Configuration
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.hibernate.ddl-auto=update
