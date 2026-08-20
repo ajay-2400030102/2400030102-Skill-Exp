@@ -1,0 +1,79 @@
+package soa.service;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
+import soa.model.Signup;
+import soa.repo.SignupRepo;
+
+@Service
+public class SignupService {
+
+    private final SignupRepo SR;
+
+    public SignupService(SignupRepo SR) {
+        this.SR = SR;
+    }
+
+    public Object signup(Signup signup) {
+
+        Map<String, Object> response = new HashMap<>();
+
+        // Check all fields
+        if (signup.getUsername() == null ||
+            signup.getUsername().isBlank() ||
+            signup.getEmail() == null ||
+            signup.getEmail().isBlank() ||
+            signup.getPassword() == null ||
+            signup.getPassword().isBlank()) {
+
+            response.put("code", 400);
+            response.put("message", "Some Data Missing");
+
+            return response;
+        }
+
+        // Check duplicate username
+        if (SR.existsById(signup.getUsername())) {
+
+            response.put("code", 409);
+            response.put("message", "Username Already Exist");
+
+            return response;
+        }
+
+        // Save user
+        SR.save(signup);
+
+        response.put("code", 200);
+        response.put("email", signup.getEmail());
+        response.put("username", signup.getUsername());
+        response.put("password", signup.getPassword());
+
+        return response;
+    }
+
+    public Object getUser(String username) {
+
+        Map<String, Object> response = new HashMap<>();
+
+        Signup signup = SR.findByUsername(username);
+
+        if (signup == null) {
+
+            response.put("code", 400);
+            response.put("message", "User not found");
+
+            return response;
+        }
+
+        response.put("code", 200);
+        response.put("email", signup.getEmail());
+        response.put("username", signup.getUsername());
+        response.put("password", signup.getPassword());
+
+        return response;
+    }
+}

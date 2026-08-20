@@ -1,0 +1,7 @@
+package soa.service;
+
+
+
+public class LoginService {
+
+}

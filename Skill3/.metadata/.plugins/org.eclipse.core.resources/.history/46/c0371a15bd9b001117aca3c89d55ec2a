@@ -1,0 +1,54 @@
+package soa.service;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
+import soa.repo.SignupRepo;
+import soa.model.Signup;
+
+@Service
+public class SignupService {
+
+    private final SignupRepo SR;
+
+    public SignupService(SignupRepo SR) {
+        this.SR = SR;
+    }
+
+    public Object signup(Signup signup) {
+
+        Map<String, Object> response = new HashMap<>();
+
+        // Check all fields
+        if (signup.getUsername() == null ||
+            signup.getUsername().isBlank() ||
+            signup.getEmail() == null ||
+            signup.getEmail().isBlank() ||
+            signup.getPassword() == null ||
+            signup.getPassword().isBlank()) {
+
+            response.put("code", 400);
+            response.put("message", "Some Data Missing");
+            return response;
+        }
+
+        // Check duplicate username
+        if (SR.existsById(signup.getUsername())) {
+
+            response.put("code", 409);
+            response.put("message", "Username Already Exist");
+            return response;
+        }
+
+        // Save user
+        SR.save(signup);
+
+        response.put("code", 200);
+        response.put("status", "Signup Successful");
+        response.put("username", signup.getClass());
+
+        return response;
+    }
+}
