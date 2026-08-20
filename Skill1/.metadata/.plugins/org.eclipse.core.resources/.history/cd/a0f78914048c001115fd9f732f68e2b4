@@ -1,0 +1,26 @@
+package soa.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import soa.repo.Orderservicerepo;
+
+@Service
+public class OrderService {
+	
+	@Autowired
+	Orderservicerepo OR;
+	public Object placeOrder() {
+		try {
+			
+		}
+		catch(Exception e) {
+			response.put("code",500);
+			response.put("message",e.getMessage());
+			
+		}
+		
+		
+	}
+
+}

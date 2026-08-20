@@ -1,0 +1,15 @@
+package soa.models;
+
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+public class Orderitems {
+
+	Long id;
+	Long itemId;
+	String itemName;
+	int quantity;
+	@ManyToOne
+	@JoinColumn(name="order_id")
+	Order order;
+}

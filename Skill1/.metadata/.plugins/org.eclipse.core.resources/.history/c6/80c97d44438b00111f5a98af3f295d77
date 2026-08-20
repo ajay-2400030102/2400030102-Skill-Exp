@@ -1,0 +1,47 @@
+package soa.models;
+import java.util.List;
+
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+@Entity
+
+
+public class Order {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	Long orderId;
+	public Long getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
+	}
+	public Long getUserId() {
+		return UserId;
+	}
+	public void setUserId(Long userId) {
+		UserId = userId;
+	}
+	public Long getRestaurantId() {
+		return restaurantId;
+	}
+	public void setRestaurantId(Long restaurantId) {
+		this.restaurantId = restaurantId;
+	}
+	public List<OrderItem> getItems() {
+		return items;
+	}
+	public void setItems(List<OrderItem> items) {
+		this.items = items;
+	}
+	Long UserId;
+	Long restaurantId;
+	@OneToMany(mappedBy = "order",cascade=CascadeType.ALL)
+	List<OrderItem> items;
+}

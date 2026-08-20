@@ -1,0 +1,5 @@
+package soa.models;
+
+public class Restaurant {
+
+}
