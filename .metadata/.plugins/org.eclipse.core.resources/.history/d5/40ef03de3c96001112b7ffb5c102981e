@@ -1,0 +1,14 @@
+package soa.service;
+
+import org.springframework.stereotype.Service;
+
+import soa.repo.CartRepo;
+@Service
+
+public class CartService {
+	CartRepo CR;
+	public CartService(CartRepo CR) {
+		this.CR=CR;
+	}
+
+}

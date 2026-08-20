@@ -1,0 +1,5 @@
+package soa.repo;
+
+public interface ProductRepo {
+
+}

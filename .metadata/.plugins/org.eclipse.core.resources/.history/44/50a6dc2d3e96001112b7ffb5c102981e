@@ -1,0 +1,27 @@
+package soa.service;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
+import soa.repo.CartRepo;
+@Service
+
+public class CartService {
+	CartRepo CR;
+	public CartService(CartRepo CR) {
+		this.CR=CR;
+	}
+	public Object getAllCartItems() {
+		Map<String, Object> response=new HashMap<>();
+		try {
+			
+		}catch(Exception e) {
+			
+		}
+		return response;
+		
+	}
+
+}
